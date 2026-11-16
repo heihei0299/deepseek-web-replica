@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>DeepSeek</title>
+<meta name="description" content="DeepSeek 网页版复刻 — 逆向工程学习用" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-whale" viewBox="0 0 32 32">
+    <path d="M13.9 11.5c1.7-2.6 4.3-4 7.4-4.1-1.4 1.1-2.5 2.4-3.2 3.9z" fill="currentColor"/>
+    <ellipse cx="17.4" cy="19" rx="9.6" ry="7" fill="currentColor"/>
+    <path d="M9.2 15.2 3.3 11.9c-.8-.5-1.7.4-1.2 1.2l2.2 3.6-2.2 3.6c-.5.8.4 1.7 1.2 1.2l5.9-3.3z" fill="currentColor"/>
+    <circle cx="22.2" cy="17.6" r="1.15" fill="#fff"/>
+  </symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></symbol>
+  <symbol id="i-think" viewBox="0 0 24 24"><path d="M12 3c-3.3 0-6 2.4-6 5.4 0 1.6.8 3 2 3.9-.2.6-.3 1.2-.3 1.8 0 .4-.5.6-.8.3-1-.9-2.4-.2-2.4 1.1 0 2.1 1.9 3.5 4.2 3.5h.6c.8 1.2 2.2 2 3.7 2 2.5 0 4.5-1.8 4.5-4 0-.5-.1-1-.3-1.4 1.2-.8 2-2.1 2-3.6 0-1.5-.8-2.9-2.1-3.7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/><circle cx="9.6" cy="9.6" r=".9" fill="currentColor"/><circle cx="14.4" cy="9.6" r=".9" fill="currentColor"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.2" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M16 16l4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-paperclip" viewBox="0 0 24 24"><path d="M20 11.5l-7.7 7.7a4.4 4.4 0 0 1-6.2-6.2l8-8a3 3 0 0 1 4.2 4.2l-8 8a1.6 1.6 0 0 1-2.2-2.2l7.3-7.3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M5 14v4.4A1.6 1.6 0 0 0 6.6 20h10.8A1.6 1.6 0 0 0 19 18.4V14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-speak" viewBox="0 0 24 24"><path d="M4 9.5h3l4.5-3.8c.7-.6 1.5-.1 1.5.8v11c0 .9-.8 1.4-1.5.8L7 14.5H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/><path d="M16.5 8.8a4.6 4.6 0 0 1 0 6.4M19 6.2a8 8 0 0 1 0 11.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.1" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M19.2 14.2a1.6 1.6 0 0 0 .3 1.8l.1.1a1.9 1.9 0 1 1-2.7 2.7l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5v.2a1.9 1.9 0 1 1-3.8 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a1.9 1.9 0 1 1-2.7-2.7l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a1.9 1.9 0 1 1 0-3.8h.2a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a1.9 1.9 0 1 1 2.7-2.7l.1.1a1.6 1.6 0 0 0 1.8.3h.1a1.6 1.6 0 0 0 1-1.5V3a1.9 1.9 0 1 1 3.8 0v.2a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a1.9 1.9 0 1 1 2.7 2.7l-.1.1a1.6 1.6 0 0 0-.3 1.8v.1a1.6 1.6 0 0 0 1.5 1h.2a1.9 1.9 0 1 1 0 3.8h-.2a1.6 1.6 0 0 0-1.5 1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.4" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M15 6.6V5.4A1.4 1.4 0 0 0 13.6 4H5.4A1.4 1.4 0 0 0 4 5.4v8.2A1.4 1.4 0 0 0 5.4 15h1.2" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v4.4h-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-like" viewBox="0 0 24 24"><path d="M7 10v9H4.5A1.5 1.5 0 0 1 3 17.5V11a1 1 0 0 1 1-1h3Zm0 9h9.2a2 2 0 0 0 2-1.6l1.1-5.4a1.6 1.6 0 0 0-1.6-1.9h-4.3l.7-3.3a1.8 1.8 0 0 0-3.2-1.3L7 10" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-dislike" viewBox="0 0 24 24"><path d="M17 14V5h2.5A1.5 1.5 0 0 1 21 6.5V13a1 1 0 0 1-1 1h-3Zm0-9H7.8a2 2 0 0 0-2 1.6L4.7 12a1.6 1.6 0 0 0 1.6 1.9h4.3l-.7 3.3a1.8 1.8 0 0 0 3.2 1.3L17 14" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V5.2A1.2 1.2 0 0 1 10.7 4h2.6a1.2 1.2 0 0 1 1.2 1.2V7M6.6 7l.8 12a1.4 1.4 0 0 0 1.4 1.3h6.4a1.4 1.4 0 0 0 1.4-1.3l.8-12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M8.5 10.5 12 14l3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M4 12h16M12 4c2.2 2.2 3.2 5 3.2 8s-1 5.8-3.2 8c-2.2-2.2-3.2-5-3.2-8s1-5.8 3.2-8Z" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
+</svg>
+
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="会话列表">
+    <div class="sidebar-head">
+      <button class="brand" id="brandBtn" title="回到首页">
+        <svg class="logo"><use href="#i-whale"/></svg>
+        <span>DeepSeek</span>
+      </button>
+      <button class="icon-btn sidebar-hide" id="collapseBtn" title="收起侧栏">
+        <svg><use href="#i-menu"/></svg>
+      </button>
+    </div>
+
+    <button class="new-chat" id="newChatBtn">
+      <svg><use href="#i-plus"/></svg><span>开启新对话</span>
+    </button>
+
+    <div class="conv-list" id="convList"></div>
+
+    <div class="sidebar-foot">
+      <div class="user-chip" id="userChip">
+        <div class="avatar">DS</div>
+        <div class="user-meta">
+          <div class="user-name">本地复刻版</div>
+          <div class="user-sub" id="providerSub">演示模式</div>
+        </div>
+        <button class="icon-btn" id="settingsBtn" title="设置"><svg><use href="#i-settings"/></svg></button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" title="会话列表"><svg><use href="#i-menu"/></svg></button>
+      <div class="topbar-left">
+        <span class="model-name" id="modelName">DeepSeek</span>
+        <span class="badge" id="providerBadge" title="当前后端">MOCK</span>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="shareBtn" title="分享当前会话"><svg><use href="#i-share"/></svg></button>
+        <button class="icon-btn" id="themeBtn" title="切换主题"><svg><use href="#i-sun"/></svg></button>
+        <button class="icon-btn" id="settingsBtn2" title="设置"><svg><use href="#i-settings"/></svg></button>
+      </div>
+    </header>
+
+    <section class="thread" id="thread">
+      <div class="welcome" id="welcome">
+        <div class="hero">
+          <svg class="hero-logo"><use href="#i-whale"/></svg>
+          <h1>今天有什么可以帮到你？</h1>
+        </div>
+        <div class="suggest" id="suggest">
+          <button data-prompt="解释一下 MCP 协议，以及它和普通 function calling 的区别">解释一下 MCP 协议</button>
+          <button data-prompt="帮我写一个 Node.js 的 SSE 流式接口，并解释背压处理">写一个 SSE 流式接口</button>
+          <button data-prompt="用 SQL 找出每个部门薪资最高的两个人，并解释窗口函数的执行顺序">窗口函数取分组 Top2</button>
+          <button data-prompt="把这段话改得更简洁有力：「由于目前系统存在一些问题，所以我们可能需要在稍后对相关功能进行修复」">帮我润色一段文字</button>
+        </div>
+      </div>
+      <div class="messages" id="messages" aria-live="polite"></div>
+    </section>
+
+    <footer class="composer-wrap">
+      <div class="attachments" id="attachments" hidden></div>
+      <div class="composer" id="composer">
+        <textarea id="input" rows="1" placeholder="给 DeepSeek 发送消息" autocomplete="off"></textarea>
+        <div class="composer-bar">
+          <div class="composer-tools">
+            <button class="tool-btn" id="attachBtn" title="上传文件"><svg><use href="#i-paperclip"/></svg></button>
+            <input type="file" id="fileInput" multiple hidden />
+            <button class="tool-btn toggle" id="thinkBtn" data-on="false" title="深度思考">
+              <svg><use href="#i-think"/></svg><span>深度思考</span>
+            </button>
+            <button class="tool-btn toggle" id="searchBtn" data-on="false" title="联网搜索">
+              <svg><use href="#i-search"/></svg><span>联网搜索</span>
+            </button>
+          </div>
+          <button class="send-btn" id="sendBtn" title="发送"><svg><use href="#i-send"/></svg></button>
+        </div>
+      </div>
+      <p class="disclaimer">内容由 AI 生成，请仔细甄别 · 本地复刻版，非官方产品</p>
+    </footer>
+  </main>
+</div>
+
+<dialog class="modal" id="settingsModal">
+  <form method="dialog" class="modal-body" id="settingsForm">
+    <div class="modal-head">
+      <h2>设置</h2>
+      <button class="icon-btn" value="cancel" aria-label="关闭"><svg><use href="#i-close"/></svg></button>
+    </div>
+
+    <label class="field">
+      <span class="field-label">API Key</span>
+      <input type="password" id="apiKeyInput" placeholder="sk-…（留空则使用本地演示模式）" autocomplete="off" spellcheck="false" />
+      <span class="field-hint">仅保存在本机 localStorage，通过 <code>x-deepseek-key</code> 头转发给本机后端，不写入日志。</span>
+    </label>
+
+    <label class="field">
+      <span class="field-label">API Base</span>
+      <input type="text" id="baseInput" placeholder="https://api.deepseek.com" autocomplete="off" spellcheck="false" />
+      <span class="field-hint">兼容 OpenAI 协议的服务也可填，例如自建网关。</span>
+    </label>
+
+    <label class="field">
+      <span class="field-label">通道</span>
+      <select id="channelSelect">
+        <option value="auto">自动（有 Key 走 API，否则演示）</option>
+        <option value="api">官方 API（api.deepseek.com）</option>
+        <option value="web">官方 Web 会话（chat.deepseek.com，需 token）</option>
+        <option value="mock">本地演示</option>
+      </select>
+      <span class="field-hint">Web 通道复刻官方 /api/v0 协议：token + PoW 挑战 + SSE 路径补丁，模型与会话记录都存在你的账号里。</span>
+    </label>
+
+    <label class="field">
+      <span class="field-label">Web 通道 userToken</span>
+      <input type="password" id="tokenInput" placeholder="chat.deepseek.com 的 Bearer token" autocomplete="off" spellcheck="false" />
+      <span class="field-hint">从已登录的官方网页取 <code>localStorage.userToken</code>，仅存本机；PoW 在浏览器里用自己的 worker 计算。</span>
+    </label>
+
+    <div class="field-row">
+      <button type="button" class="ghost-btn" id="exportBtn">导出会话</button>
+      <button type="button" class="ghost-btn danger" id="clearBtn">清空所有会话</button>
+    </div>
+
+    <div class="modal-foot">
+      <button class="primary-btn" value="save" id="saveSettings">保存</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

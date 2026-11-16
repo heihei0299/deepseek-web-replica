@@ -1,0 +1,10 @@
+# 本地工具与派生产物
+.tools/
+artifacts/
+evidence/
+reverse/
+webapp/data/
+node_modules/
+*.tmp
+*.log
+.DS_Store
